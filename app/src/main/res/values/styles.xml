@@ -10,5 +10,11 @@
         <!-- Customize the background color of the BottomNavigationView -->
         <item name="android:background">@color/bottom_navigation_background_color</item>
     </style>
+    <style name="NavigationText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+
+        <!-- Add more attributes to customize text appearance -->
+    </style>
 </resources>
 

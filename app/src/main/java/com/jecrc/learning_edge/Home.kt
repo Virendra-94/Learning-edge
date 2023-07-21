@@ -11,9 +11,12 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-
+import android.content.Context
+import android.content.SharedPreferences
 
 class Home : Fragment() {
 
@@ -27,55 +30,82 @@ class Home : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Show the title bar in the Home Fragment
-        activity?.actionBar?.show()
-
-        // Set the title for the title bar in the Home Fragment
-        activity?.title = "Current Qulification"
+        val isFirstTime = isFirstTimeLaunch()
+//        // Show the title bar in the Home Fragment
+//        activity?.actionBar?.show()
+//
+//        // Set the title for the title bar in the Home Fragment
+//        activity?.title = "Current Qulification"
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        if (isFirstTime) {
+            val view = inflater.inflate(R.layout.fragment_home, container, false)
+            val toolbar: Toolbar = view.findViewById(R.id.HomeToolbar)
+            toolbar.title = "Current Qualification"
+            (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-
-        // Find views by their IDs
-        editTextName = view.findViewById(R.id.editTextName)
-        spinnerBranch = view.findViewById(R.id.spinnerBranch)
-        spinnerSemester = view.findViewById(R.id.spinnerSemester)
-        button = view.findViewById(R.id.HomeActivity)
+            // Find views by their IDs
+            editTextName = view.findViewById(R.id.editTextName)
+            spinnerBranch = view.findViewById(R.id.spinnerBranch)
+            spinnerSemester = view.findViewById(R.id.spinnerSemester)
+            button = view.findViewById(R.id.HomeActivity)
 
 //         Setup ArrayAdapter for Branch Spinner
-        val branches = arrayOf("Select your branch","CSE", "CSE+AI", "IT","AI/DS","ECE","Mechanical","Civil") // Add your branch items here
-        val branchAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, branches)
-        branchAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerBranch.adapter = branchAdapter
+            val branches = arrayOf(
+                "Select your branch",
+                "CSE",
+                "CSE+AI",
+                "IT",
+                "AI/DS",
+                "ECE",
+                "Mechanical",
+                "Civil"
+            ) // Add your branch items here
+            val branchAdapter =
+                ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, branches)
+            branchAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerBranch.adapter = branchAdapter
 
 
-        // Setup ArrayAdapter for Semester Spinner
-        val semesters = arrayOf("Select your semester","1st Sem", "2nd Sem", "3rd Sem","4th Sem","5th Sem","6th Sem","7th Sem","8th Sem") // Add your semester items here
-        val semesterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, semesters)
-        semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerSemester.adapter = semesterAdapter
+            // Setup ArrayAdapter for Semester Spinner
+            val semesters = arrayOf(
+                "Select your semester",
+                "1st Sem",
+                "2nd Sem",
+                "3rd Sem",
+                "4th Sem",
+                "5th Sem",
+                "6th Sem",
+                "7th Sem",
+                "8th Sem"
+            ) // Add your semester items here
+            val semesterAdapter =
+                ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, semesters)
+            semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerSemester.adapter = semesterAdapter
 
 
+            // Button click listener
+            button.setOnClickListener {
+                val name = editTextName.text.toString()
+                val selectedBranch = spinnerBranch.selectedItem.toString()
+                val selectedSemester = spinnerSemester.selectedItem.toString()
 
-        // Button click listener
-        button.setOnClickListener {
-            val name = editTextName.text.toString()
-            val selectedBranch = spinnerBranch.selectedItem.toString()
-            val selectedSemester = spinnerSemester.selectedItem.toString()
+                if (name.isNotBlank() && selectedBranch != "Select your branch" && selectedSemester != "Select your semester") {
+                    // All fields are filled, proceed to MainActivity2
+                    val bundle = Bundle()
+                    bundle.putString("name", name)
 
-            if (name.isNotBlank() && selectedBranch != "Select your branch" && selectedSemester != "Select your semester") {
-                // All fields are filled, proceed to MainActivity2
-                findNavController().navigate(R.id.action_home2_mainActivity2)
-            } else {
-                // Show a message to the user that they need to fill all fields
-                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_home2_mainActivity2, bundle)
+                } else {
+                    // Show a message to the user that they need to fill all fields
+                    Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
-        }
 
 
-        // Do something with the selected values
+            // Do something with the selected values
             // For example, you can pass these values to another activity using Intent
 //            val intent = Intent(activity, MainActivity2::class.java)
 //            intent.putExtra("name", name)
@@ -84,11 +114,21 @@ class Home : Fragment() {
 //            startActivity(intent)
 
 
-
-
-        return view
-
+            return view}
+            else {
+                // If not the first time, navigate to MainActivity2
+                findNavController().navigate(R.id.action_home2_mainActivity2)
+                return null
+            }
     }
 
+    private fun isFirstTimeLaunch(): Boolean {
+        val sharedPref: SharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val isFirstTime = sharedPref.getBoolean("isFirstTime", true)
 
+        // Set the flag to false, indicating app has been launched at least once
+        sharedPref.edit().putBoolean("isFirstTime", false).apply()
+
+        return isFirstTime
+    }
 }

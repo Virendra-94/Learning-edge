@@ -25,9 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@color/text"
             app:itemBackground="@color/text"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
+            app:itemIconSize="28dp"
             app:menu="@menu/bottom_navigation_menu"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -39,9 +41,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/white"
+        android:background="@color/text"
         app:headerLayout="@layout/nav_header"
+        app:itemTextAppearance="@style/NavigationText"
+        app:itemIconTint="@color/white"
+        app:itemIconSize="28dp"
         app:menu="@menu/nav_drawer_menu"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>
