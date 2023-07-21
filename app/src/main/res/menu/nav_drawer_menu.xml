@@ -13,5 +13,11 @@
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_help"
             android:title="Help" />
+        <item
+            android:id="@+id/nav_version"
+            android:icon="@drawable/ic_version"
+            android:title="@string/app_version"
+            android:checkable="false"
+            />
     </group>
 </menu>

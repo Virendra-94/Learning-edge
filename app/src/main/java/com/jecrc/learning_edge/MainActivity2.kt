@@ -60,6 +60,48 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         return true
     }
 
+//    private fun setupNavigationDrawer() {
+//        // Set up the ActionBarDrawerToggle to handle the hamburger icon and side menu
+//        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+//        val navigationView: NavigationView = findViewById(R.id.navigationView)
+//
+//        // Set the hamburger icon for the side navigation menu
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_hamburger)
+//
+//        // Create an instance of the ActionBarDrawerToggle and set it as the DrawerListener
+//        val toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer)
+//        drawerLayout.addDrawerListener(toggle)
+//        toggle.syncState()
+//
+//        // Set a click listener for the side menu items
+//        navigationView.setNavigationItemSelectedListener { menuItem ->
+//            when (menuItem.itemId) {
+//                R.id.nav_about_us -> {
+//                    // Replace the main fragment container with the About Us fragment
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.fragmentContainer, AboutUsFragment())
+//                        .commit()
+//                }
+//                R.id.nav_contact_us -> {
+//                    // Replace the main fragment container with the Contact Us fragment
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.fragmentContainer, ContactUsFragment())
+//                        .commit()
+//                }
+//                R.id.nav_help -> {
+//                    // Replace the main fragment container with the Help fragment
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.fragmentContainer, HelpFragment())
+//                        .commit()
+//                }
+//            }
+//            // Close the side navigation menu after item selection
+//            drawerLayout.closeDrawer(GravityCompat.START)
+//            true
+//        }
+//    }
+
     private fun setupNavigationDrawer() {
         // Set up the ActionBarDrawerToggle to handle the hamburger icon and side menu
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
@@ -76,31 +118,24 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
 
         // Set a click listener for the side menu items
         navigationView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_about_us -> {
-                    // Replace the main fragment container with the About Us fragment
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, AboutUsFragment())
-                        .commit()
-                }
-                R.id.nav_contact_us -> {
-                    // Replace the main fragment container with the Contact Us fragment
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, ContactUsFragment())
-                        .commit()
-                }
-                R.id.nav_help -> {
-                    // Replace the main fragment container with the Help fragment
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, HelpFragment())
-                        .commit()
-                }
+            val fragment: Fragment = when (menuItem.itemId) {
+                R.id.nav_about_us -> AboutUsFragment()
+                R.id.nav_contact_us -> ContactUsFragment()
+                R.id.nav_help -> HelpFragment()
+                else -> homeFragment!! // Default to homeFragment
             }
+
+            // Replace the main fragment container with the selected fragment
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .commit()
+
             // Close the side navigation menu after item selection
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle the click on the hamburger icon and open the side navigation drawer
