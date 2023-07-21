@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Learning Edge</string>
+    <string name="contentDesc">Spalsh_screen_img</string>
+    <string name="nxtBtn">Next</string>
+    <string name="finishBtn">Get Started</string>
+    <string name="fSImg">First_screen_img</string>
+    <string name="sSImg">Second_screen_img</string>
+    <string name="tSImg">Third_screen_img</string>
+    <string name="fourSImg">Fourth_screen_img</string>
+    <string name="fifthSImg">Fifth_screen_img</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_screen_txt">to Learning Edge</string>
+    <string name="first_screen_desc">Make your study easy with us and let fly your grades on the sky.</string>
+    <string name="second_screen_txt">Notes</string>
+    <string name="second_screen_desc">Get all your notes at one place.</string>
+    <string name="third_screen_txt">PYQs</string>
+    <string name="third_screen_desc">Find all subjects previous year question papers. </string>
+    <string name="fourth_screen_txt">Lectures</string>
+    <string name="fourth_screen_desc">Find lecture videos arranged according to your subject. </string>
+    <string name="fifth_screen_txt">Quiz</string>
+    <string name="fifth_screen_desc">Attempt online quiz to check your subject knowledge.</string>
+    <string name="select_branch">Select Branch</string>
+    <string name="select_semester">Select Semester</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="go_ahead">Go Ahead</string>
+    <string name="app_version">App Version 1.0.0</string>
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+</resources>

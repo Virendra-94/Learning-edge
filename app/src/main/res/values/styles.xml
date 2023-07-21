@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavigationViewStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <!-- Customize the text color of non-selected items -->
+        <item name="android:textColor">@color/selected_item_color</item>
+
+        <!-- Customize the text color of the selected item -->
+<!--        <item name="android:textColorActive">@color/selected_item_color</item>-->
+
+        <!-- Customize the background color of the BottomNavigationView -->
+        <item name="android:background">@color/bottom_navigation_background_color</item>
+    </style>
+</resources>
+

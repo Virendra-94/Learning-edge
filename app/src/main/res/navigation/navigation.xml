@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.jecrc.learning_edge.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_home2"
+            app:destination="@id/home2"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_splashScreen_to_onBoarding"
+            app:destination="@id/onBoarding"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.jecrc.learning_edge.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home2_mainActivity2"
+            app:destination="@id/mainActivity2"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoarding"
+        android:name="com.jecrc.learning_edge.OnBoarding"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" >
+        <action
+            android:id="@+id/action_onBoarding_to_home2"
+            app:destination="@id/home2"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity2"
+        android:name="com.jecrc.learning_edge.MainActivity2"
+        android:label="activity_main2"
+        tools:layout="@layout/activity_main2" />
+</navigation>
