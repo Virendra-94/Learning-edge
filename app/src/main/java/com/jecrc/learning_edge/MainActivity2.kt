@@ -1,18 +1,18 @@
 package com.jecrc.learning_edge
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+@Suppress("DEPRECATION")
+class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
 
 
     private var homeFragment: HomeFragment? = null
@@ -24,6 +24,10 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+
+
+
+
 // Get the name from the intent
         val name = intent.getStringExtra("name")
         // Initialize the fragments
@@ -53,13 +57,15 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
 
 
 
-
 //        // Get the name from the arguments
 //        val name = intent.getStringExtra("name")
 //
 //        // Set the name in the ActionBar title
 //        supportActionBar?.title = "Hello, $name"
     }
+
+
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle item selection in the BottomNavigationView
@@ -130,6 +136,9 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
 //            true
 //        }
 //    }
+
+
+
 
     private fun setupNavigationDrawer() {
         // Set up the ActionBarDrawerToggle to handle the hamburger icon and side menu
