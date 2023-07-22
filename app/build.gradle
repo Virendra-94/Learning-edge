@@ -53,6 +53,9 @@ dependencies {
     //PageIndicator
     implementation("com.tbuonomo:dotsindicator:5.0")
 
+    //for circular image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
 
 
