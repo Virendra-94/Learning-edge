@@ -27,16 +27,7 @@ class Home : Fragment() {
     private lateinit var spinnerSemester: Spinner
     private lateinit var button: Button
 
-    private lateinit var userDataListener: UserDataListener
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is UserDataListener) {
-            userDataListener = context
-        } else {
-            throw ClassCastException("$context must implement UserDataListener")
-        }
-    }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -127,7 +118,7 @@ class Home : Fragment() {
 
                 if (name.isNotBlank() && selectedBranch != "Select your branch" && selectedSemester != "Select your semester") {
                     // All fields are filled, proceed to saveUserData and then navigate to MainActivity2
-                    userDataListener.saveUserData(name, selectedBranch, selectedSemester)
+
 
                     // Navigate to MainActivity2
                     val mainActivity2Intent = Intent(requireContext(), MainActivity2::class.java)
