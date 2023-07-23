@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "774467034400",
+    "project_id": "learning-edge-a788e",
+    "storage_bucket": "learning-edge-a788e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774467034400:android:db65e1f520677c211d4b45",
+        "android_client_info": {
+          "package_name": "com.jecrc.learning_edge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774467034400-fouhv8snvuokot1r03h36cuiktqn60ro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhAIYH74jp498WntfRwu7cify7rzuLE60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774467034400-fouhv8snvuokot1r03h36cuiktqn60ro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
