@@ -1,4 +1,5 @@
 package com.jecrc.learning_edge
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,12 +18,14 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home2, container, false)
 
-        // Retrieve the name from the MainActivity2 through UserDataListener
-        val userDataListener = activity as? UserDataListener
-        userDataListener?.getUserNameFromDatabase { name ->
-            val userNameTextView: TextView = view.findViewById(R.id.userName)
-            userNameTextView.text = "Hello, $name"
-        }
+        userNameTextView = view.findViewById(R.id.userName)
+
+        // Retrieve the name from SharedPreferences
+        val sharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val name = sharedPreferences.getString("name", "Unknown")
+        userNameTextView.text = "Hello, $name"
+
         return view
     }
-}
+
+    }
