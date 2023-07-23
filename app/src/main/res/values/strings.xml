@@ -32,4 +32,11 @@
     <string name="b_tech_3rd_year_computer_science_and_engineering">B.Tech 3rd Year Computer Science and Engineering</string>
     <string name="social_links">Social Links :</string>
     <string name="dfLinkedin"><a href='https://www.linkedin.com/in/virendra-kumar-448184230/'>.</a></string>
+    <string name="aboutKush">3rd Year CSE Student\nBatch 2021-25\nJaipur Engineering College and Research Centre</string>
+    <string name="branch">3rd Year CSE Student</string>
+    <string name="batch">Batch 2021-2025</string>
+    <string name="clg">Jaipur Engineering College and Research Centre</string>
+    <string name="df1_work">UI/UX, Kotlin, Documentation, Research</string>
+    <string name="df2_name">Virendra Kumar</string>
+    <string name="df2_work">Kotlin, Backend, Firebass, Planning</string>
 </resources>

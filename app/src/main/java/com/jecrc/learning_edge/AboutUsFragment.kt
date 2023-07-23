@@ -1,59 +1,80 @@
 package com.jecrc.learning_edge
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AboutUsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AboutUsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
+    @SuppressLint("QueryPermissionsNeeded")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_us, container, false)
-    }
+        val rootView = inflater.inflate(R.layout.fragment_about_us, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AboutUsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AboutUsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        val df1linkedin = rootView.findViewById<Button>(R.id.linkedinbtn)
+        val df1insta = rootView.findViewById<Button>(R.id.instabtn)
+        val df1gmail= rootView.findViewById<Button>(R.id.socialBtn)
+        val df2linkedin = rootView.findViewById<Button>(R.id.linkedinbtn2)
+        val df2insta = rootView.findViewById<Button>(R.id.instabtn2)
+        val df2gmail = rootView.findViewById<Button>(R.id.socialBtn2)
+        df1linkedin.setOnClickListener {
+            val url1 = "https://www.linkedin.com/in/khushhal-singh-bb01aa227" // Replace this with your desired URL
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url1))
+            startActivity(intent)
+        }
+        df1insta.setOnClickListener{
+            val url2 = "https://www.google.com" // Replace this with your desired URL
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url2))
+            startActivity(intent)
+        }
+        df2linkedin.setOnClickListener {
+            val url3 = "https://www.linkedin.com/in/virendra-kumar-448184230/" // Replace this with your desired URL
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url3))
+            startActivity(intent)
+        }
+        df2insta.setOnClickListener{
+            val url4 = "https://instagram.com/virendra_kr9?igshid=NTc4MTIwNjQ2YQ==" // Replace this with your desired URL
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url4))
+            startActivity(intent)
+        }
+
+        df1gmail.setOnClickListener {
+            val recipientEmail1 = "khushhalsinghofficial@gmail.com" // Replace with the recipient's email address
+            val subject1 = "Hello from the App" // Replace with the desired subject
+            val body1 = "Hi, This is the body of the email." // Replace with the desired email body
+
+            val emailIntent1 = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:$recipientEmail1")
+                putExtra(Intent.EXTRA_SUBJECT, subject1)
+                putExtra(Intent.EXTRA_TEXT, body1)
+
             }
+            startActivity(emailIntent1)
+
+        }
+
+        df2gmail.setOnClickListener {
+            val recipientEmail2 = "virendrakumarofficial94@gmail.com" // Replace with the recipient's email address
+            val subject2 = "Hello from the App" // Replace with the desired subject
+            val body2 = "Hi, This is the body of the email." // Replace with the desired email body
+
+            val emailIntent2 = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:$recipientEmail2")
+                putExtra(Intent.EXTRA_SUBJECT, subject2)
+                putExtra(Intent.EXTRA_TEXT, body2)
+            }
+            startActivity(emailIntent2)
+        }
+        return rootView
     }
-}
+    }
