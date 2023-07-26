@@ -9,6 +9,8 @@ import android.view.ViewGroup
 
 class LecturesFragment : Fragment() {
 
+    private var selectedSemester: String? = null
+    private var selectedBranch: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +25,14 @@ class LecturesFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lectures, container, false)
+
+
+//        // Retrieve the selected semester and branch from MainActivity2 using the getter methods
+//        val mainActivity2 = activity as? MainActivity2
+//        val selectedSemester = mainActivity2?.getSelectedSemester()
+//        val selectedBranch = mainActivity2?.getSelectedBranch()
+
+
     }
 
 

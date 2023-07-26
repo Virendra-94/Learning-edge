@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 class PyqsFragment : Fragment() {
 
+    private var selectedSemester: String? = null
+    private var selectedBranch: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +26,11 @@ class PyqsFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pyqs, container, false)
+
+//        // Retrieve the selected semester and branch from MainActivity2 using the getter methods
+//        val mainActivity2 = activity as? MainActivity2
+//        val selectedSemester = mainActivity2?.getSelectedSemester()
+//        val selectedBranch = mainActivity2?.getSelectedBranch()
     }
 
 

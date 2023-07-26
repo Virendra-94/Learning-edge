@@ -75,8 +75,7 @@ class Home : Fragment() {
             // Setup ArrayAdapter for Semester Spinner
             val semesters = arrayOf(
                 "Select your semester",
-                "1st Sem",
-                "2nd Sem",
+                "1st Year",
                 "3rd Sem",
                 "4th Sem",
                 "5th Sem",
@@ -99,10 +98,18 @@ class Home : Fragment() {
                 if (name.isNotBlank() && selectedBranch != "Select your branch" && selectedSemester != "Select your semester") {
                     // All fields are filled, proceed to saveUserData and then navigate to MainActivity2
 //                    userDataListener.saveUserData(name, selectedBranch, selectedSemester)
+                    val sharedPref = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+                    val editor = sharedPref.edit()
+                    editor.putString("name", name)
+                    editor.putString("selectedBranch", selectedBranch)
+                    editor.putString("selectedSemester", selectedSemester)
+                    editor.apply()
 
                     // Navigate to MainActivity2
                     val mainActivity2Intent = Intent(requireContext(), MainActivity2::class.java)
                     mainActivity2Intent.putExtra("name", name)
+                    mainActivity2Intent.putExtra("selectedBranch", selectedBranch)
+                    mainActivity2Intent.putExtra("selectedSemester", selectedSemester)
                     startActivity(mainActivity2Intent)
                     requireActivity().finish()
                 } else {
@@ -112,7 +119,8 @@ class Home : Fragment() {
             }
 
 
-            return view}
+            return view
+        }
             else {
                 // If not the first time, navigate to MainActivity2
                 findNavController().navigate(R.id.action_home2_mainActivity2)
