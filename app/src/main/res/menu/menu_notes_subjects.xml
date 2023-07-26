@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/menu/menu_notes_subjects.xml -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_download_note_1"
+        android:title="Note 1"
+        android:icon="@drawable/ic_download" /> <!-- Replace ic_download with your actual icon drawable -->
+    <item
+        android:id="@+id/action_download_note_2"
+        android:title="Note 2"
+        android:icon="@drawable/ic_download" /> <!-- Replace ic_download with your actual icon drawable -->
+    <!-- Add more menu items for additional notes -->
+</menu>
+
+

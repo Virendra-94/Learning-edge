@@ -11,7 +11,7 @@
         <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
 
-    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
+    <style name="MyActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Set the background color for the action bar -->
         <item name="android:background">@color/actionBarColor</item>
     </style>

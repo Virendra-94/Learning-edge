@@ -39,4 +39,5 @@
     <string name="df1_work">UI/UX, Kotlin, Documentation, Research</string>
     <string name="df2_name">Virendra Kumar</string>
     <string name="df2_work">Kotlin, Backend, Firebass, Planning</string>
+    <string name="download_icon">Download icon</string>
 </resources>
