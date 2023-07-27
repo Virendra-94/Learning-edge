@@ -7,12 +7,21 @@ android {
     namespace 'com.jecrc.learning_edge'
     compileSdk 33
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    
     defaultConfig {
         applicationId "com.jecrc.learning_edge"
         minSdk 21
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,7 +64,8 @@ dependencies {
 
     //for circular image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
 
 
