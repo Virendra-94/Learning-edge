@@ -1,11 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+
 }
 
 android {
     namespace 'com.jecrc.learning_edge'
-    compileSdk 33
+    compileSdk 34
 
     sourceSets {
         main {
@@ -16,7 +18,7 @@ android {
     defaultConfig {
         applicationId "com.jecrc.learning_edge"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
         ndk {
@@ -42,6 +44,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -52,6 +55,11 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+    implementation 'com.google.firebase:firebase-common-ktx:20.3.3'
+    implementation 'com.google.firebase:firebase-storage:20.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    implementation 'androidx.compose.ui:ui-tooling-data:1.4.3'
+    implementation 'androidx.compose.ui:ui-tooling-data-android:1.6.0-alpha01'
 //    implementation 'com.google.android.ads:mediation-test-suite:3.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -64,8 +72,27 @@ dependencies {
 
     //for circular image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+=======
+
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+
+    // Add the dependency for the Cloud Storage library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-storage-ktx")
+
+//    implementation 'com.google.firebase:firebase-appcheck:17.0.1'
+//    implementation 'com.google.firebase:firebase-appcheck-safety-net:17.0.0'
+
+
+
+
+
+
+
 
 
 

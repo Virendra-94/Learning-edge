@@ -28,6 +28,7 @@ class Home : Fragment() {
     private lateinit var button: Button
 
 
+
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,8 +74,7 @@ class Home : Fragment() {
             // Setup ArrayAdapter for Semester Spinner
             val semesters = arrayOf(
                 "Select your semester",
-                "1st Sem",
-                "2nd Sem",
+                "1st Year",
                 "3rd Sem",
                 "4th Sem",
                 "5th Sem",
@@ -87,29 +87,7 @@ class Home : Fragment() {
             semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerSemester.adapter = semesterAdapter
 
-//
-//            // Button click listener
-//            button.setOnClickListener {
-//                val name = editTextName.text.toString()
-//                val selectedBranch = spinnerBranch.selectedItem.toString()
-//                val selectedSemester = spinnerSemester.selectedItem.toString()
-//
-//                if (name.isNotBlank() && selectedBranch != "Select your branch" && selectedSemester != "Select your semester") {
-//                    // All fields are filled, proceed to MainActivity2
-//                    val bundle = Bundle()
-//                    bundle.putString("name", name)
-//
-//                    // Save user data to the database
-//                    (activity as MainActivity2).saveUserData(name, selectedBranch, selectedSemester)
-//
-//                    findNavController().navigate(R.id.action_home2_mainActivity2, bundle)
-//                } else {
-//                    // Show a message to the user that they need to fill all fields
-//                    Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//            }
-//// Inside Home fragment
+
 
             button.setOnClickListener {
                 val name = editTextName.text.toString()
@@ -120,9 +98,21 @@ class Home : Fragment() {
                     // All fields are filled, proceed to saveUserData and then navigate to MainActivity2
 
 
+=======
+//                    userDataListener.saveUserData(name, selectedBranch, selectedSemester)
+                    val sharedPref = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+                    val editor = sharedPref.edit()
+                    editor.putString("name", name)
+                    editor.putString("selectedBranch", selectedBranch)
+                    editor.putString("selectedSemester", selectedSemester)
+                    editor.apply()
+
+
                     // Navigate to MainActivity2
                     val mainActivity2Intent = Intent(requireContext(), MainActivity2::class.java)
                     mainActivity2Intent.putExtra("name", name)
+                    mainActivity2Intent.putExtra("selectedBranch", selectedBranch)
+                    mainActivity2Intent.putExtra("selectedSemester", selectedSemester)
                     startActivity(mainActivity2Intent)
                     requireActivity().finish()
                 } else {
@@ -132,16 +122,8 @@ class Home : Fragment() {
             }
 
 
-            // Do something with the selected values
-            // For example, you can pass these values to another activity using Intent
-//            val intent = Intent(activity, MainActivity2::class.java)
-//            intent.putExtra("name", name)
-//            intent.putExtra("branch", selectedBranch)
-//            intent.putExtra("semester", selectedSemester)
-//            startActivity(intent)
-
-
-            return view}
+            return view
+        }
             else {
                 // If not the first time, navigate to MainActivity2
                 findNavController().navigate(R.id.action_home2_mainActivity2)

@@ -1,5 +1,6 @@
 <!-- activity_main2.xml -->
-<androidx.drawerlayout.widget.DrawerLayout android:id="@+id/drawerLayout"
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
