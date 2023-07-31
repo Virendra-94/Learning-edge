@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subjectContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- Button for subject name -->
+    <ImageButton
+        android:id="@+id/btnSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:gravity="start|center_vertical"
+        android:padding="16dp"
+        android:src="@drawable/ic_arrow_down"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <!-- Expandable section for notes -->
+    <LinearLayout
+        android:id="@+id/expandableSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Spinner to show the notes dropdown -->
+        <Spinner
+            android:id="@+id/dropdownNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <!-- ImageView for the download icon -->
+        <ImageView
+            android:id="@+id/ivDownloadIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_download" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+<!--<Button xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/btnSubject"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:background="?android:selectableItemBackground"-->
+<!--    android:gravity="start|center_vertical"-->
+<!--    android:padding="16dp"-->
+<!--    android:textSize="18sp"-->
+<!--    style="@style/ShapeAppearanceOverlay.Material3.Button"-->
+<!--    android:textStyle="bold"-->
+<!--    tools:ignore="SpeakableTextPresentCheck" />-->
+
+
+
+
+
+
+

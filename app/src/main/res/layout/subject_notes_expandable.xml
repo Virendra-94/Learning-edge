@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subjectContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Button for subject name with arrow icon -->
+    <Button
+        android:id="@+id/btnSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:gravity="start|center_vertical"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:drawableEnd="@drawable/ic_arrow_down"
+        android:drawablePadding="8dp"
+        android:onClick="onSubjectButtonClick"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <!-- Expandable section for notes -->
+    <LinearLayout
+        android:id="@+id/expandableSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Spinner to show the notes dropdown -->
+        <Spinner
+            android:id="@+id/dropdownNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <!-- ImageView for the download icon -->
+        <ImageView
+            android:id="@+id/ivDownloadIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_download" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/subjectContainer"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="vertical">-->
+
+<!--    &lt;!&ndash; Button for subject name &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/btnSubject"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="?android:selectableItemBackground"-->
+<!--        android:gravity="start|center_vertical"-->
+<!--        android:padding="16dp"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        tools:ignore="SpeakableTextPresentCheck" />-->
+
+<!--    &lt;!&ndash; Expandable section for notes &ndash;&gt;-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/expandableSection"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="gone"-->
+<!--        android:paddingStart="16dp"-->
+<!--        android:paddingEnd="16dp">-->
+
+<!--        &lt;!&ndash; Spinner to show the notes dropdown &ndash;&gt;-->
+<!--        <Spinner-->
+<!--            android:id="@+id/dropdownNotes"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="16sp" />-->
+
+<!--        &lt;!&ndash; ImageView for the download icon &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ivDownloadIcon"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_download" />-->
+
+<!--    </LinearLayout>-->
+
+<!--</LinearLayout>-->

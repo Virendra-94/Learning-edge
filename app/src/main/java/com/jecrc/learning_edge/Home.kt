@@ -98,7 +98,7 @@ class Home : Fragment() {
                     // All fields are filled, proceed to saveUserData and then navigate to MainActivity2
 
 
-=======
+
 //                    userDataListener.saveUserData(name, selectedBranch, selectedSemester)
                     val sharedPref = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
                     val editor = sharedPref.edit()

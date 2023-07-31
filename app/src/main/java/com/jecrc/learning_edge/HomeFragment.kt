@@ -5,7 +5,7 @@ import android.os.Bundle
 
 import android.os.Handler
 import android.os.Looper
-=======
+
 import android.util.Log
 
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-=======
+
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
     private var currentIndex = 0
     private val scrollInterval = 3000L
     private val dotIndicatorSize = 16
-=======
+
 
     private lateinit var userNameTextView: TextView
 
@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
         activity?.title = "Learning Edge"
 
 
-        val view = inflater.inflate(R.layout.fragment_home2, container, false)
+//        val view = inflater.inflate(R.layout.fragment_home2, container, false)
         val name = arguments?.getString("name")
         // For example, set the name to a TextView
         val textViewName: TextView = view.findViewById(R.id.userName)
@@ -65,13 +65,13 @@ class HomeFragment : Fragment() {
         // Initialize the RecyclerView and start auto-scrolling
         setupRecyclerView()
         startAutoScroll()
-=======
+
         userNameTextView = view.findViewById(R.id.userName)
 
         // Retrieve the name from the SharedPreferences
 //        val name = activity?.intent?.getStringExtra("name")
         val sharedPref = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
-        val name = sharedPref.getString("name", null)
+//        val name = sharedPref.getString("name", null)
         // If the name is not null, save it in MainActivity2's userName variable and in SharedPreferences
         val mainActivity = activity as? MainActivity2
         if (name != null && mainActivity != null) {
@@ -169,6 +169,6 @@ class HomeFragment : Fragment() {
         }, scrollInterval, scrollInterval)
     }
 }
-=======
-    }
+
+
 

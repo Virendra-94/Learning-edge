@@ -383,7 +383,7 @@ class NotesFragment : Fragment() {
             val selectedSubjectNotes = subjectsWithNotes[firstSubject] ?: emptyList()
 
             // Set up the RecyclerView with the list of notes for the selected subject
-            notesAdapter = NotesAdapter(selectedSubjectNotes)
+            notesAdapter = NotesAdapter(subjectsWithNotes) // Pass the whole map of subjectsWithNotes
             notesRecyclerView.adapter = notesAdapter
         }
         return binding.root

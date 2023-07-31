@@ -44,5 +44,6 @@
     <string name="hz_rv_leetcode">Leetcode is an online platform to enhance your skills and prepare for tech interviews. There site has over 1900 coding problems with questions to help you prepare.</string>
 =======
     <string name="download_icon">Download icon</string>
+    <string name="download_icon_description">Download_Icon\n</string>
 
 </resources>

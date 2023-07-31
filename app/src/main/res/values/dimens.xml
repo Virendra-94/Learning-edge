@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/values/dimens.xml -->
+
+<resources>
+    <!-- Change the value to adjust the width of the popup menu -->
+    <dimen name="popup_menu_width">200dp</dimen>
+</resources>

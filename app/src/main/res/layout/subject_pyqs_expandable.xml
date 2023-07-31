@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Add the subject button -->
+    <Button
+        android:id="@+id/btnSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:gravity="start|center_vertical" />
+
+    <!-- Add the expandable section -->
+    <LinearLayout
+        android:id="@+id/expandableSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- Add the Spinner for pyqs -->
+        <Spinner
+            android:id="@+id/dropdownPyqs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Add the download icon -->
+        <ImageView
+            android:id="@+id/ivDownloadIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_download" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
