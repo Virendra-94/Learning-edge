@@ -42,8 +42,38 @@
 
     <string name="contact_us">how can we help you</string>
     <string name="hz_rv_leetcode">Leetcode is an online platform to enhance your skills and prepare for tech interviews. There site has over 1900 coding problems with questions to help you prepare.</string>
-=======
+    =======
     <string name="download_icon">Download icon</string>
     <string name="download_icon_description">Download_Icon\n</string>
-
+    <string name="quiz_title">Select subject:</string>
+    <string name="how_to_download_notes"><![CDATA[-> How to download Notes]]></string>
+    <string name="download_instructions1">1. Click on Subject name</string>
+    <string name="download_instructions2">2. Notes Name Will be shown</string>
+    <string name="download_instructions3">3. Select Notes by clicking on down arrow </string>
+    <string name="download_instructions4">4. Then click on download icon </string>
+    <string name="download_instructions5">5. Allow the permission and click on download icon again </string>
+    <string name="download_instructions6">6. Your desired notes now downloaded on your download folder</string>
+    <string name="subjects">Subjects:</string>
+    <string name="faq_one">Q: What Learning Edge will do?</string>
+    <string name="faq_one_ans">A: This app will help JECRC Foundation students to simplify their study need like Notes,PYQs,Lectures, etc.</string>
+    <string name="faq_two">Q: How to download Notes/PYQs?</string>
+    <string name="faq_two_ans">A: Just clicked on the subject name/year and select the desired notes/pyqs and click on the download icon.</string>
+    <string name="faq_three">Q: Why storage permission needed to Learning Edge?</string>
+    <string name="faq_three_ans">A: To download the notes/pyqs in your device storage we need storage permission.</string>
+    <string name="faq_four">Q: Is Learning Edge paid app?</string>
+    <string name="faq_four_ans">A: Learning Edge is absolutely free app.</string>
+    <string name="Faqs">Frequently Asked Questions:</string>
+    <string name="my_mail">Email: learningedge.edu@gmail.com</string>
+    <string name="my_number">Phone: +91 9887426694</string>
+    <string name="coding_platforms">Coding Platforms</string>
+    <string name="feed1">Learn A2Z DSA from Striver aka Raj Vikramditya and Grab your dream placement.</string>
+    <string name="feed1_details">Click to open TakeUForward and start your DSA journey.</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_notes">Notes</string>
+    <string name="menu_pyqs">Pyqs</string>
+    <string name="menu_lectures">Lectures</string>
+    <string name="menu_quiz">Quiz</string>
+    <string name="feed2">Find Free Certification Courses</string>
+    <string name="feed2_details">Open link to join premium courses and boost your skills.</string>
+    <string name="hello_msg">We\'re thrilled to have you here. Explore and enjoy our app\'s features to make your life easier and more enjoyable. Happy exploring!</string>
 </resources>

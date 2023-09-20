@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Learning_Edge" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
-     <item name="android:actionBarItemBackground">@color/text</item>
+        <item name="android:actionBarItemBackground">@color/text</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
@@ -11,7 +11,7 @@
         <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
 
-    <style name="MyActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="MyActionBar">
         <!-- Set the background color for the action bar -->
         <item name="android:background">@color/actionBarColor</item>
     </style>

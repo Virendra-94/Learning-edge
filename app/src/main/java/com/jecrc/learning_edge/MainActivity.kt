@@ -3,12 +3,7 @@ import android.content.Context
 
 import android.os.Bundle
 
-import android.util.Log
-
-=======
-
 import androidx.appcompat.app.AppCompatActivity
-
 
 
 
@@ -25,12 +20,6 @@ class MainActivity : AppCompatActivity(){
         val branch = intent.getStringExtra("branch")
         val semester = intent.getStringExtra("semester")
 
-
-
-    }
-
-}
-=======
         // Save the user data to SharedPreferences if it's not already saved
         val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
         if (!sharedPreferences.contains("name")) {
@@ -40,4 +29,4 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-
+}

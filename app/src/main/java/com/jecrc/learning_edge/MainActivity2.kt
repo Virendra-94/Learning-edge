@@ -6,39 +6,35 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import androidx.core.content.FileProvider
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.jecrc.learning_edge.databinding.ActivityMainBinding
-import de.hdodenhof.circleimageview.BuildConfig.APPLICATION_ID
-import java.io.File
-
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import androidx.core.content.ContextCompat.startActivity
-import android.widget.ProgressBar
-import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import com.jecrc.learning_edge.NotificationUtils.openFileIntent
+import com.jecrc.learning_edge.databinding.ActivityMainBinding
+import java.io.File
 //import kotlin.coroutines.jvm.internal.CompletedContinuation.context
-import kotlinx.coroutines.tasks.await
+
+
 
 @Suppress("DEPRECATION")
-class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
+//class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
+    class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener, LecturesFragment.SubjectClickListener {
 //    private lateinit var databaseReference: DatabaseReference
 
     private var homeFragment: HomeFragment? = null
@@ -46,9 +42,10 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
     private var pyqsFragment: PyqsFragment? = null
     private var lecturesFragment: LecturesFragment? = null
     private var quizFragment: QuizFragment? = null
-//    private var selectedBranch: String? = null
-//    private var selectedSemester: String? = null
-    var userName: String? = null // Store the user name here
+    private lateinit var toggle: ActionBarDrawerToggle
+
+//    var userName: String? = null // Store the user name here
+var userName: String = "" // Initialize as an empty string
 
 
     private lateinit var binding: ActivityMainBinding
@@ -115,13 +112,15 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
 
 
 
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
+
 
         // Get the name, selectedBranch, and selectedSemester from intent
         val name = intent.getStringExtra("name")
         val selectedBranch = intent.getStringExtra("selectedBranch")
         val selectedSemester = intent.getStringExtra("selectedSemester")
+
+
+
 
 
         // Initialize the fragments
@@ -132,22 +131,10 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         quizFragment = QuizFragment()
 
 
-//        // Initialize the shared preferences only once
-//        val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
-//        if (!sharedPreferences.contains("selected_branch") && !sharedPreferences.contains("selected_semester")) {
-//            with(sharedPreferences.edit()) {
-//                putString("selected_branch", branch)
-//                putString("selected_semester", semester)
-//                apply()
-//            }
-//        }
+        // Retrieve the user's name from SharedPreferences
+        val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        userName = sharedPreferences.getString("name", "") ?: ""
 
-        // Store the user name in a class-level variable
-        userName = name
-//        // Check if the name is already saved, then retrieve it
-//        if (sharedPreferences.contains("user_name")) {
-//            userName = sharedPreferences.getString("user_name", null)
-//        }
         // Create the notification channel (For Android 8.0 and above)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Channel Name"
@@ -165,24 +152,21 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
 
+        // Set labels for each menu item
+        val menu = bottomNavigationView.menu
+        menu.findItem(R.id.nav_home)?.title = getString(R.string.menu_home)
+        menu.findItem(R.id.nav_notes)?.title = getString(R.string.menu_notes)
+        menu.findItem(R.id.nav_pyqs)?.title = getString(R.string.menu_pyqs)
+        menu.findItem(R.id.nav_lectures)?.title = getString(R.string.menu_lectures)
+        menu.findItem(R.id.nav_quiz)?.title = getString(R.string.menu_quiz)
+
         // Set up the side navigation drawer
         setupNavigationDrawer()
 
-//        // Pass the name to the HomeFragment
-//        val bundle = Bundle()
-//        bundle.putString("name", name)
-//        homeFragment?.arguments = bundle
-//
-//        // Pass the selected semester to the NotesFragment using a Bundle
-//        val notesBundle = Bundle()
-//        notesBundle.putString("selectedSemester", semester)
-//        notesFragment?.arguments = notesBundle
-//
         // Pass the name and other data to the HomeFragment
         val bundle = Bundle()
         bundle.putString("name", name)
-//        bundle.putString("selectedSemester", selectedSemester)
-//        bundle.putString("selectedBranch", selectedBranch)
+
         homeFragment?.arguments = bundle
 
         val semandbranch = Bundle()
@@ -195,18 +179,44 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
             .replace(R.id.fragmentContainer, homeFragment!!)
             .commit()
 
+        // Set the hamburger icon for the side navigation menu
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_hamburger)
 
 
+
+        lecturesFragment?.setSubjectClickListener(this)
 
     }
+
+
+    override fun onSubjectClick(subject: Subject) {
+        // TODO: Fetch and set the playlist URL for the clicked subject
+        val clickedSubjectPlaylistUrl = subject.playlistUrl // Replace with the actual playlist URL
+
+        // Get the selected branch and semester from MainActivity2
+        val selectedBranch = getSelectedBranch() // Implement this method to retrieve the selected branch
+        val selectedSemester = getSelectedSemester() // Implement this method to retrieve the selected semester
+
+        // Create a new instance of LecturesFragment with the branch, semester, and playlist URL
+        val fragment = LecturesFragment.newInstance(clickedSubjectPlaylistUrl)
+
+        // Replace the current fragment with the new fragment
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null) // Add to the back stack to allow navigation back
+            .commit()
+    }
+
+
     private fun getSelectedSemester(): String? {
         val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("selected_semester", null)
+        return sharedPreferences.getString("selectedSemester", null)
     }
 
     private fun getSelectedBranch(): String? {
         val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("selected_branch", null)
+        return sharedPreferences.getString("selectedBranch", null)
     }
     // In the onResume method of MainActivity2
     override fun onResume() {
@@ -219,22 +229,7 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
             homeFragment.arguments = bundle
         }
     }
-    // Function to show a notification
-//    fun showNotification(title: String, message: String) {
-//        val notificationManager =
-//            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//        val channelId = "channelId"
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            val channel =
-//                NotificationChannel(channelId, "Channel Name", NotificationManager.IMPORTANCE_DEFAULT)
-//            notificationManager.createNotificationChannel(channel)
-//        }
-//        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-//            .setContentTitle(title)
-//            .setContentText(message)
-//            .setSmallIcon(R.drawable.ic_notification)
-//        notificationManager.notify(1, notificationBuilder.build())
-//    }
+
     fun showNotification(context: Context, title: String, message: String, uri: Uri?) {
         // Create a PendingIntent to open the file when the notification is clicked
         val contentIntent = uri?.let {
@@ -259,17 +254,10 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(NOTIFICATION_ID, builder.build())
     }
-    // Function to open the downloaded file
-//    fun openFile(localFile: File) {
-//        val intent = Intent(Intent.ACTION_VIEW)
-//        val uri = FileProvider.getUriForFile(this, "$APPLICATION_ID.fileprovider", localFile)
-//        intent.setDataAndType(uri, "application/pdf")
-//        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-//        startActivity(intent)
-//    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle item selection in the BottomNavigationView
-        val fragment: Fragment = when (item.itemId) {
+        val fragment: Any = when (item.itemId) {
             R.id.nav_home -> homeFragment!!
             R.id.nav_notes -> notesFragment!!
             R.id.nav_pyqs -> pyqsFragment!!
@@ -279,31 +267,39 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         }
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
+            .replace(R.id.fragmentContainer, fragment as Fragment)
             .commit()
 
         return true
     }
 
 
-    // Pass the name to the HomeFragment when needed
-
-
-
-
     private fun setupNavigationDrawer() {
-        // Set up the ActionBarDrawerToggle to handle the hamburger icon and side menu
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         val navigationView: NavigationView = findViewById(R.id.navigationView)
 
-        // Set the hamburger icon for the side navigation menu
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_hamburger)
-
         // Create an instance of the ActionBarDrawerToggle and set it as the DrawerListener
-        val toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer)
+        toggle = object : ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            R.string.open_drawer,
+            R.string.close_drawer
+        ) {
+            override fun onDrawerOpened(drawerView: View) {
+                super.onDrawerOpened(drawerView)
+                // Update the icon to the back arrow when the drawer is opened
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                super.onDrawerClosed(drawerView)
+                // Update the icon to the hamburger icon when the drawer is closed
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_hamburger)
+            }
+        }
+
         drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        toggle.syncState() // This line is important for the icon to change
 
         // Set a click listener for the side menu items
         navigationView.setNavigationItemSelectedListener { menuItem ->
@@ -326,16 +322,28 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
     }
 
 
+
+
+
+
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle the click on the hamburger icon and open the side navigation drawer
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
-        return if (item.itemId == android.R.id.home) {
-            drawerLayout.openDrawer(GravityCompat.START)
-            true
-        } else {
-            super.onOptionsItemSelected(item)
+
+        when (item.itemId) {
+            android.R.id.home -> {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                } else {
+                    drawerLayout.openDrawer(GravityCompat.START)
+                }
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
+
 
     private fun saveSelectedBranchAndSemester(branch: String, semester: String) {
         val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
@@ -353,9 +361,6 @@ class MainActivity2 : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         editor.apply()
     }
 }
-
-
-
 
 
 class FirebaseManager(private val context: Context) {
@@ -378,9 +383,48 @@ class FirebaseManager(private val context: Context) {
         // Create the file to save the downloaded note
         val file = File(downloadsDir, noteName)
 
-        val notesRef: StorageReference = storageRef.child("Common").child(noteName)
+        val notesRef: StorageReference = storageRef.child("Notes").child(noteName)
 
         val downloadTask = notesRef.getFile(file)
+
+        downloadTask.addOnSuccessListener {
+            // File downloaded successfully
+            onSuccess(file)
+        }.addOnFailureListener { exception ->
+            // An error occurred during the download
+            onFailure(exception)
+        }.addOnProgressListener { taskSnapshot ->
+            // Get the download progress and update the ProgressBar
+            val progress = (100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toInt()
+            onProgress?.invoke(progress)
+        }
+    }
+
+
+
+
+    fun downloadPyqs(
+        branch: String?,
+        semester: String?,
+        pyqsFileName: String,
+        onSuccess: (File) -> Unit,
+        onFailure: (Exception) -> Unit,
+        onProgress: ((Int) -> Unit)? = null
+    ) {
+        if (context == null) {
+            onFailure(IllegalStateException("Context is null"))
+            return
+        }
+
+        // Get the external downloads directory
+        val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+
+        // Create the file to save the downloaded pyqs
+        val file = File(downloadsDir, pyqsFileName)
+
+        val pyqsRef: StorageReference = storageRef.child("Notes").child(pyqsFileName)
+
+        val downloadTask = pyqsRef.getFile(file)
 
         downloadTask.addOnSuccessListener {
             // File downloaded successfully
@@ -397,33 +441,8 @@ class FirebaseManager(private val context: Context) {
 }
 
 
-//class FirebaseManager {
-//    private val storageReference = Firebase.storage.reference
-//
-//    fun downloadNotes(
-//        noteName: String,
-//        onSuccess: (File) -> Unit,
-//        onFailure: (Exception) -> Unit,
-//        onProgress: (Int) -> Unit // Add the onProgress callback
-//    ) {
-//        val storageRef = Firebase.storage.reference
-//        val fileRef = storageRef.child("Common/$noteName")
-//
-//        val localFile = File.createTempFile(noteName, "pdf")
-//        fileRef.getFile(localFile)
-//            .addOnSuccessListener {
-//                onSuccess(localFile)
-//            }
-//            .addOnFailureListener { exception ->
-//                onFailure(exception)
-//            }
-//            .addOnProgressListener { taskSnapshot ->
-//                // Calculate the progress percentage
-//                val progress = (100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toInt()
-//                onProgress(progress)
-//            }
-//    }
-//}
+
+
 
 
 

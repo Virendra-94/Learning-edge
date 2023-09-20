@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,39 +17,52 @@
             android:orientation="vertical">
 
 
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/poppins"
-            android:text="[Name]"
-            android:textColor="@color/text"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.028"
-            tools:ignore="MissingConstraints"
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="15dp"
+                android:text="[Name]"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.028"
 
-            />
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/white"
-                android:text="Hello Engineers, this platform is an project to contribute for our juniors."
-                android:textSize="25sp" />
+                android:backgroundTint="#F9F9F9"
+                android:text="@string/hello_msg"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:paddingLeft="10dp"
+                android:text="@string/coding_platforms"
+                android:textColor="@color/secondary"
+                android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:overScrollMode="always"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:scrollbarSize="8dp"
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbarThumbVertical="@android:color/darker_gray"
@@ -62,51 +74,115 @@
                 android:id="@+id/indicatorLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
             <!-- Your existing content goes here -->
-
-            <ImageView
+            <TextView
+                android:id="@+id/dailyfeed"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_height="400dp"
-                android:src="@drawable/khush_profile" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:paddingLeft="8dp"
+                android:paddingBottom="10dp"
+                android:text="Useful Feed: "
+                android:textColor="@color/secondary"
+                android:textSize="16sp" />
 
-            <ImageView
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView1"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_height="400dp"
-                android:src="@drawable/khush_profile" />
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
 
-            <ImageView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Question -->
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="345dp"
+                        android:layout_height="151dp"
+                        android:src="@drawable/tuf" />
+
+                    <TextView
+                        android:id="@+id/feed1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/feed1"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <!-- Answer -->
+                    <TextView
+                        android:id="@+id/fee1_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/feed1_details"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_height="400dp"
-                android:src="@drawable/khush_profile" />
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_height="400dp"
-                android:src="@drawable/khush_profile" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
+                    <!-- Question -->
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="345dp"
+                        android:layout_height="151dp"
+                        android:src="@drawable/feed2_img" />
+
+                    <TextView
+                        android:id="@+id/feed2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/feed2"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <!-- Answer -->
+                    <TextView
+                        android:id="@+id/fee2_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/feed2_details"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/floatingButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="15dp"
-        android:backgroundTint="@color/secondary"
-        android:background="@drawable/ic_gfg"
-        android:elevation="10dp"
-        android:text=" "/>
-
+<!--    <Button-->
+<!--        android:id="@+id/floatingButton"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_margin="15dp"-->
+<!--        android:background="@drawable/ic_gfg"-->
+<!--        android:backgroundTint="@color/secondary"-->
+<!--        android:elevation="10dp"-->
+<!--        android:text=" " />-->
 
 
 </RelativeLayout>

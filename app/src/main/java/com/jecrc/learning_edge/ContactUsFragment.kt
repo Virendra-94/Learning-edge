@@ -1,59 +1,89 @@
 package com.jecrc.learning_edge
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.jecrc.learning_edge.databinding.FragmentContactUsBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ContactUsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ContactUsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentContactUsBinding
+    private lateinit var database: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact_us, container, false)
+    ): View {
+        binding = FragmentContactUsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ContactUsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ContactUsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        database = FirebaseDatabase.getInstance().getReference("/User")
+
+        binding.btnSend.setOnClickListener {
+            val name = binding.editTextName.text.toString().trim()
+            val email = binding.editTextEmail.text.toString().trim()
+            val message = binding.editTextMessage.text.toString().trim()
+
+            if (name.isEmpty() || email.isEmpty() || message.isEmpty()) {
+                // Show error Snackbar if any field is empty
+                showSnackbar("Please fill in all details")
+                return@setOnClickListener
             }
+
+            if (!isValidEmail(email)) {
+                // Show error Snackbar if email format is invalid
+                showSnackbar("Invalid email format")
+                return@setOnClickListener
+            }
+
+            // Send the message to Firebase database
+            val contactId = database.push().key
+            val contact = ContactForm(contactId, name, email, message)
+            if (contactId != null) {
+                database.child(contactId).setValue(contact)
+                showSnackbar("Message sent successfully")
+                clearFields()
+            }
+        }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        // You can use a regular expression for email validation
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        return email.matches(emailPattern.toRegex())
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(
+            requireView().findViewById(R.id.snackbar_container),
+            message,
+            Snackbar.LENGTH_SHORT
+        )
+
+        // Create a custom behavior to show the Snackbar at the top
+        val params = snackbar.view.layoutParams as CoordinatorLayout.LayoutParams
+        params.gravity = Gravity.TOP
+        snackbar.view.layoutParams = params
+
+        snackbar.show()
+    }
+
+    private fun clearFields() {
+        binding.editTextName.text.clear()
+        binding.editTextEmail.text.clear()
+        binding.editTextMessage.text.clear()
     }
 }

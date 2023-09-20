@@ -10,4 +10,5 @@
     <color name="bottom_navigation_background_color">#344955</color>
     <color name="inactiveDotColor">#808080</color>
     <color name="activeDotColor">#FFA500</color>
+    <color name="success">#39D640</color>
 </resources>

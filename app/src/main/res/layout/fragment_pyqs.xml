@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PyqsFragment">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Past Year Question Papers Title -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingBottom="10dp"
+        android:text="Past Year Question Papers"
+        android:textColor="@color/secondary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-</FrameLayout>
+    <!-- Subject List Container -->
+    <LinearLayout
+        android:id="@+id/subjectContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Subject Button 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+<!--            &lt;!&ndash; Subject Button &ndash;&gt;-->
+<!--            <Button-->
+<!--                android:id="@+id/btnSubject1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Subject 1"-->
+<!--                android:background="@drawable/subject_btn_style"-->
+<!--                android:textColor="@color/white"/>-->
+
+            <!-- Expandable Section -->
+            <LinearLayout
+                android:id="@+id/expandableSection1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- PYQs Dropdown -->
+                <Spinner
+                    android:id="@+id/dropdownPyqs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!-- Download Icon -->
+                <ImageView
+                    android:id="@+id/ivDownloadIcon1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_download"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:contentDescription="Download Icon"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Add more subject buttons and expandable sections as needed -->
+    </LinearLayout>
+    <!-- Subject List Container -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pyqsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+</LinearLayout>

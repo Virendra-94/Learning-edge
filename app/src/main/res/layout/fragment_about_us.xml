@@ -18,7 +18,7 @@
         android:gravity="center_horizontal"
         android:text="Developers"
         android:textAlignment="center"
-        android:textColor="@color/text"
+        android:textColor="@color/secondary"
         android:textSize="25sp"
         android:textStyle="bold"
         tools:ignore="MissingConstraints" />
@@ -74,7 +74,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/Developer_first"
                     android:textColor="@color/text"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
 
@@ -88,15 +88,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <Button
                     android:id="@+id/linkedinbtn"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:background="@drawable/ic_linkedin"
 
+                    android:textSize="12sp"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="307dp"
                     tools:layout_editor_absoluteY="53dp" />
+
                 <Button
                     android:id="@+id/instabtn"
                     android:layout_width="35dp"
@@ -104,15 +107,18 @@
                     android:layout_marginTop="15dp"
                     android:autoLink="all"
                     android:background="@drawable/ic_instagram"
+                    android:textSize="12sp"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="306dp"
                     tools:layout_editor_absoluteY="11dp" />
+
                 <Button
                     android:id="@+id/socialBtn"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/ic_gmail"
+                    android:textSize="12sp"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="308dp"
                     tools:layout_editor_absoluteY="101dp" />
@@ -204,7 +210,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/df2_name"
                     android:textColor="@color/text"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
 
@@ -224,6 +230,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:background="@drawable/ic_linkedin"
+                    android:textSize="12sp"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="307dp"
                     tools:layout_editor_absoluteY="53dp" />
@@ -235,6 +242,7 @@
                     android:layout_marginTop="15dp"
                     android:autoLink="all"
                     android:background="@drawable/ic_instagram"
+                    android:textSize="12sp"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="306dp"
                     tools:layout_editor_absoluteY="11dp" />
@@ -245,6 +253,7 @@
                     android:layout_height="35dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/ic_gmail"
+                    android:textSize="12sp"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="308dp"
                     tools:layout_editor_absoluteY="101dp" />

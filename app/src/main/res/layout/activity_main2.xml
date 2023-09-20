@@ -1,4 +1,4 @@
-<!-- activity_main2.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
@@ -32,7 +32,8 @@
             app:itemTextColor="@color/white"
             app:itemIconSize="28dp"
             app:menu="@menu/bottom_navigation_menu"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

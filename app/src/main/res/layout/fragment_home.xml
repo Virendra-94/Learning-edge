@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/text"
-    android:backgroundTint="@color/text"
+    android:backgroundTint="@color/white"
     android:padding="20dp"
     tools:context=".NotesFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/HomeToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/actionBarColor"
-        android:elevation="0dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:title="Current Qualification"
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Current Semester"
+        android:textColor="@color/secondary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Large"
-        app:titleTextColor="@color/secondary" />
+        app:layout_constraintVertical_bias="0.534" />
 
     <Spinner
         android:id="@+id/spinnerBranch"
@@ -75,77 +76,17 @@
         app:layout_constraintTop_toBottomOf="@id/spinnerBranch" />
 
 
-    <!--    <Spinner-->
-    <!--        android:id="@+id/spinnerBranch"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:background="@drawable/dropdown_menu"-->
-    <!--        android:dropDownSelector="@color/white"-->
-    <!--        android:entries="@array/branch_items"-->
-    <!--        android:minHeight="48dp"-->
-    <!--        android:padding="15dp"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintEnd_toStartOf="@+id/arrowBranch"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/editTextName"-->
-    <!--        tools:ignore="Suspicious0dp" />-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/arrowBranch"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:background="@drawable/dropdown_menu"-->
-    <!--        android:padding="15dp"-->
-    <!--        android:layout_marginEnd="8dp"-->
-    <!--        android:src="@drawable/baseline_arrow_drop_down_24"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/spinnerBranch"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/spinnerBranch"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent" />-->
-
-    <!--    <Spinner-->
-    <!--        android:id="@+id/spinnerSemester"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:background="@drawable/dropdown_menu"-->
-    <!--        android:dropDownSelector="@color/white"-->
-    <!--        android:entries="@array/semester_items"-->
-    <!--        android:minHeight="48dp"-->
-    <!--        android:padding="15dp"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintEnd_toStartOf="@+id/arrowSemester"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/spinnerBranch" />-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/arrowSemester"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:layout_marginEnd="8dp"-->
-    <!--        android:padding="15dp"-->
-    <!--        android:background="@drawable/dropdown_menu"-->
-    <!--        android:src="@drawable/baseline_arrow_drop_down_24"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/spinnerSemester"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/spinnerSemester"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent" />-->
-
-
     <Button
         android:id="@+id/HomeActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@drawable/selection_btn"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/white"
         android:drawableEnd="@drawable/baseline_arrow_forward_24"
         android:padding="20dp"
         android:text="@string/go_ahead"
-        android:textColor="#344955"
+        android:textColor="@color/text"
+        android:background="@drawable/nextbtn"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

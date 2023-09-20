@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="branch_items">CSE,IT,ECE</string-array>
-    <string-array name="semester_items">Sem 1, Sem 2, Sem 3</string-array>
-    <array name="exam_years_array">
+    <string-array name="branch_items">
+        <item>CSE</item>
+        <item>IT</item>
+        <item>ECE</item>
+    </string-array>
+    <string-array name="semester_items">
+        <item>Sem 1</item>
+        <item>Sem 2</item>
+        <item>Sem 3</item>
+    </string-array>
+    <string-array name="exam_years_array">
         <item>2022</item>
         <item>2023</item>
         <!-- Add more exam years here -->
-    </array>
+    </string-array>
 </resources>
