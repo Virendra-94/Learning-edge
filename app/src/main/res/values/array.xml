@@ -2,4 +2,9 @@
 <resources>
     <string-array name="branch_items">CSE,IT,ECE</string-array>
     <string-array name="semester_items">Sem 1, Sem 2, Sem 3</string-array>
+    <array name="exam_years_array">
+        <item>2022</item>
+        <item>2023</item>
+        <!-- Add more exam years here -->
+    </array>
 </resources>
